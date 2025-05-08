@@ -1,0 +1,18 @@
+@import "tailwindcss"; 
+@plugin "./hero.ts"; 
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --backdrop-safari-sm: 4px; 
+  --backdrop-safari-md: 8px;
+  --backdrop-safari-lg: 16px;
+  --backdrop-safari-xl: 24px;
+  --backdrop-safari-2xl: 32px;
+
+}
+
+@utility backdrop-safari-* {
+  backdrop-filter: blur(var(--backdrop-safari-*));
+  -webkit-backdrop-filter: blur(var(--backdrop-safari-*));
+}
