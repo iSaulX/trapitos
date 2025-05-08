@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-
+import Login from "@/pages/Login";
 export default function AppRouter(){
     return ( 
         <Router>
             <Routes>
-                <Route path="/" element={<h1>Home</h1>} />
+                <Route path="/" element={<Login />} />
             </Routes>
         </Router>
 
