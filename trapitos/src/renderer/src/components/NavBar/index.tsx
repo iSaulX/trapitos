@@ -13,11 +13,11 @@ import {
 
 export default function NavBar() {
     return (
-        <Navbar>
+        <Navbar isBordered isBlurred>
             <NavbarBrand>
                 <h2 className="text-2xl font-extrabold">Mis trapitos</h2>
             </NavbarBrand>
-            <NavbarContent>
+            <NavbarContent justify='end'>
                 <NavbarItem>
                     <Dropdown>
                         <DropdownTrigger>
