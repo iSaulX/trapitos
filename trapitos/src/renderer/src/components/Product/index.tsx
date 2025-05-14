@@ -4,7 +4,7 @@ import { FaCartShopping as Cart } from "react-icons/fa6";
 export type ProductProps = {
     image: string; 
     name: string; 
-    id: string; 
+    id: number; 
     price: number; 
     quantity: number;
 }
@@ -22,7 +22,7 @@ export default function Product({ image, name, id, price, quantity }: ProductPro
                     <p className="font-semibold text-neutral-400 w-full text-end">Cantidad: 
                         <span className="font-extrabold dark:text-white text-black"> {quantity}</span></p> {/* Display quantity */}
                 </div>
-                <Button variant="light" className="rounded-lg w-full border-1 dark:border-white/30 backdrop-blur-2xl border-black/30" size="sm" startContent={<Cart aria-hidden className="focus:outline-none"/>}>
+                <Button as={Link} to={`product/${id}`} variant="light" className="rounded-lg w-full border-1 dark:border-white/30 backdrop-blur-2xl border-black/30" size="sm" startContent={<Cart aria-hidden className="focus:outline-none"/>}>
                     Mas información.
                 </Button>
             </CardBody>
