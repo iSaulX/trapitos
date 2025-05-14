@@ -2,6 +2,7 @@ import NavBar from "@renderer/components/NavBar";
 import Footer from "@renderer/components/Footer";
 import { useTheme } from "@heroui/use-theme";
 import { Outlet } from "react-router";
+
 export default function BaseLayout(){
     useTheme(); 
     return ( 
