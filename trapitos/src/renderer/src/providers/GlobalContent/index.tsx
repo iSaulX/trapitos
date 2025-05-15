@@ -2,6 +2,8 @@ import { createContext, useContext } from "react";
 import type { SetStateAction, Dispatch} from "react";
 import type { Product, Customer, Purchase, Cupon } from "@renderer/types/types";
 type GlobalContextType = {
+    cart: Product[];
+    setCart: Dispatch<SetStateAction<Product[]>>;
     products: Product[];
     setProducts: Dispatch<SetStateAction<Product[]>>;
     customers: Customer[];

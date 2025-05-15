@@ -1,5 +1,6 @@
 import { useParams } from 'react-router'
 import { Image, Button, Divider } from '@heroui/react'
+import { addToast } from '@heroui/toast'
 import { useGlobalContext } from '@renderer/providers/GlobalContent'
 import { FaCartShopping as Cart } from 'react-icons/fa6'
 import { Link } from 'react-router'
@@ -7,8 +8,36 @@ import NumberFlow from '@number-flow/react'
 
 export default function Product() {
     const { productId } = useParams<{ productId: string }>()
-    const { products } = useGlobalContext()
+    const { products, setProducts, setCart } = useGlobalContext()
     const product = products.find((product) => product.id === Number(productId))
+    function handleAddToCart(): void {
+        if (!product) return;
+
+        setProducts((prev) =>
+            prev.map((p) =>
+                p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p
+            ).filter((p) => p.quantity > 0)
+        );
+
+        setCart((prev) => {
+            const existingProduct = prev.find((item) => item.id === product.id);
+            if (existingProduct) {
+                return prev.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                return [...prev, { ...product, quantity: 1 }];
+            }
+        });
+
+        addToast({
+            title: 'Producto agregado al carrito',
+            description: `Agregaste ${product.name} al carrito`,
+            color: 'success',
+        });
+    }
     return (
         <div className="flex flex-col lg:flex-row items-start justify-center gap-2 p-3 ">
             <Image src={product?.image} alt={product?.name} className="aspect-square  w-full" />
@@ -28,6 +57,7 @@ export default function Product() {
                     <Button
                         color="primary"
                         startContent={<Cart aria-hidden className="focus:outline-none" />}
+                        onPress={handleAddToCart}
                     >
                         Agregar al carrito.
                     </Button>

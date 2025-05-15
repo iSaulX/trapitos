@@ -15,7 +15,7 @@ export default function Product({ image, name, id, price, quantity }: ProductPro
             <CardBody className="flex flex-col items-center justify-start gap-2">
                 <img src={image} className="top-0 left-0 absolute blur-lg h-10 w-10 object-contain aspect-square"/>
                 <img src={image} className="bottom-0 right-0 absolute blur-lg h-10 w-10 object-contain aspect-square "/>
-                <Image src={image} className="w-full aspect-square object-center object-cover"  alt="Product image"/>
+                <img src={image} className="w-full aspect-square object-center object-cover rounded-2xl"  alt="Product image"/>
                 <h2 className="font-extrabold text-xl w-full text-start">{name}</h2>
                 <div className="flex flex-row items-center justify-between w-full">
                     <p className="font-semibold text-neutral-400 w-full text-start">${price}</p>

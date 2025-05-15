@@ -3,6 +3,7 @@ import Home from "@renderer/pages/Home";
 import BaseLayout from "@renderer/pages/BaseLayout";
 import Dashboard from "@renderer/pages/Dashboard";
 import Product from "@renderer/pages/ProductPage";
+import ShoppingCart from "@renderer/pages/ShopingCart";
 export default function Router(){
     return ( 
         <BrowserRouter>
@@ -11,6 +12,7 @@ export default function Router(){
                 <Route path="/dashboard" element={<BaseLayout />} >
                     <Route index element={<Dashboard />} />
                     <Route path="product/:productId" element={<Product />} />
+                    <Route path="cart" element={<ShoppingCart />} />
                 </Route>
             </Routes>
         </BrowserRouter>
