@@ -1,7 +1,8 @@
-import { Card, CardFooter, CardBody, Button, Divider, Form, Input, Textarea } from '@heroui/react'
+import { Card, CardBody, Button, Divider, Form, Input, Textarea } from '@heroui/react'
 import { useGlobalContext } from '@renderer/providers/GlobalContent'
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
+
 export default function Checkout() {
     const { cart, setCart, setPurchases, setCustomers } = useGlobalContext()
     const navigate = useNavigate()
