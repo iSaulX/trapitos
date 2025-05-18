@@ -10,16 +10,20 @@ import {
     Form,
     Input,
     ModalHeader, 
+    User, 
     Table, 
-    TableBody, 
     TableHeader, 
     TableColumn, 
+    TableBody, 
+    TableRow, 
     TableCell, 
+    getKeyValue
 } from '@heroui/react'
 import { useGlobalContext } from '@renderer/providers/GlobalContent'
 import Product from '@renderer/components/Product'
 import Discount from '@renderer/components/Discount'
 import ButtonAddProduct from '@renderer/components/ButtonAddProduct'
+import { Link } from 'react-router'
 import { type FormEvent } from 'react'
 function getMessage(): string {
     const hour: number = new Date().getHours()
@@ -33,7 +37,7 @@ function getMessage(): string {
 }
 
 export default function Dashboard() {
-    const { products, cupons, setCupons } = useGlobalContext()
+    const { products, cupons, setCupons, customers, purchases } = useGlobalContext()
     const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
     function handleSubmit(event: FormEvent<HTMLFormElement>): void {
@@ -75,6 +79,41 @@ export default function Dashboard() {
                 {cupons.map((cupon) => (
                     <Discount {...cupon} />
                 ))}
+            </section>
+            <Divider />
+            <section className='w-full flex gap-2 items-start justify-start flex-col'>
+                <h1 className='font-extrabold text-2xl'>Clientes</h1>
+                {customers.length > 0 ?  (
+                    customers.map((customer, index) => (
+                        <Link to={`/dashboard/customers/${customer.id}`} key={index}>
+                        <User 
+                        name={customer.name}
+                        description={customer.email}
+                        />
+                        </Link>
+                    ))
+                ) : (
+                    <p>No hay clientes disponibles.</p>
+                )}
+            </section>
+            <Divider />
+            <section className='w-full flex gap-2 items-start justify-start flex-col'>
+                <h1 className='font-extrabold text-2xl'>Compras</h1>
+                <Table isStriped>
+                    <TableHeader>
+                        <TableColumn key="id">ID</TableColumn>
+                        <TableColumn key="date">Fecha</TableColumn>
+                        <TableColumn key="total">Total</TableColumn>
+                    </TableHeader>
+                    <TableBody items={purchases} emptyContent="No hay compras disponibles">
+                        {item => (
+                            <TableRow key={item.id}>
+                                {columnKey => <TableCell key={columnKey}>{getKeyValue(item, columnKey)}</TableCell>}
+                            </TableRow>
+                        )}
+
+                    </TableBody>
+                </Table>
             </section>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>

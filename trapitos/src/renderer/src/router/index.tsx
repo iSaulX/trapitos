@@ -6,6 +6,7 @@ import Product from "@renderer/pages/ProductPage";
 import ShoppingCart from "@renderer/pages/ShopingCart";
 import Checkout from "@renderer/pages/Checkout";
 import Done from "@renderer/pages/Done";
+import Customer from "@renderer/pages/Customers";
 export default function Router(){
     return ( 
         <BrowserRouter>
@@ -17,6 +18,7 @@ export default function Router(){
                     <Route path="cart" element={<ShoppingCart />} />
                     <Route path="checkout" element={<Checkout />} />
                     <Route path="done" element={<Done />} />
+                    <Route path="customers/:customerId" element={<Customer />} />
                 </Route>
             </Routes>
         </BrowserRouter>
